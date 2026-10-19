@@ -1,0 +1,30 @@
+
+name: Atualizar cobrinha roxa
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  gerar-cobrinha:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Gerar cobrinha
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: BernardoCipolli
+          outputs: |
+            dist/github-snake.svg?color_snake=%23C084FC&color_dots=%230D0715,%232C1249,%235816A0,%238B5CF6,%23D8B4FE
+
+      - name: Publicar cobrinha
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
