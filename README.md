@@ -59,8 +59,11 @@ const bernardo = {
 ### 📈 Gráfico de atividades
 
 <div align="center">
-  <img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=BernardoCipolli&bg_color=0D0715&color=E9D5FF&title_color=C084FC&line=A855F7&point=FFFFFF&area_color=7C3AED&area=true&hide_border=true&radius=12" alt="Gráfico de atividades no GitHub" />
+  <img width="100%"
+    src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=BernardoCipolli&theme=dracula"
+    alt="Resumo de atividades de Bernardo Cipolli" />
 </div>
+
 
 ---
 
