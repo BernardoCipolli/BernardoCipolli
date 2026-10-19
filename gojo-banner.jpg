@@ -1,0 +1,40 @@
+name: Gojo - Gerar gráfico 3D
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - ".github/workflows/3d-graph.yml"
+      - ".github/conf/3d-graph.json"
+
+permissions:
+  contents: write
+
+jobs:
+  gerar-grafico-3d:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Baixar arquivos do perfil
+        uses: actions/checkout@v4
+
+      - name: Gerar gráfico 3D do BernardoCipolli
+        uses: yoshi389111/github-profile-3d-contrib@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: BernardoCipolli
+          SETTING_JSON: .github/conf/3d-graph.json
+
+      - name: Publicar gráfico atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile-3d-contrib/
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualizar contribuicoes 3D do BernardoCipolli"
+            git push
+          fi
